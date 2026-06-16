@@ -42,7 +42,7 @@ on:
 
       PDF_NAME_RULE:
         type: string
-        description: 'PDF文件命名规则。支持字段如 Aid, Atitle, Pindex, Pid, Ptitle'
+        描述: 'PDF文件命名规则。支持字段如 Aid, Atitle, Pindex, Pid, Ptitle'
         default: ''
         required: false
 
@@ -54,7 +54,7 @@ on:
 
       UPLOAD_NAME:
         type: string
-        default: Click me to download
+        默认值: 点击此处下载
         description: 上传文件名称
         required: false
 
@@ -108,22 +108,22 @@ jobs:
           python-version: "3.11"
 
       - name: Install Dependency
-        run: |
+        运行: |
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
 
-      - name: 安装img2pdf
+      - 名称: 安装img2pdf
         如果: inputs.PDF_OPTION != '否'
         运行: |
           pip install img2pdf
 
-      - name: 安装jmcomic（pip）
+      - 名称: 安装jmcomic（pip）
         如果: ${{ github.ref != 'refs/heads/dev' }}
         运行: |
           pip install jmcomic -i https://pypi.org/project --upgrade
 
-      - name: 安装jmcomic（local）
-: { github.ref == 'refs/heads/dev' }}
+      - 名称: 安装jmcomic（local）
+        如果: ${{ github.ref == 'refs/heads/dev' }}
         运行: |
           pip install -e ./
 
@@ -144,4 +144,4 @@ jobs:
           名称: ${{ env.UPLOAD_NAME }}
           路径: ${{ env.JM_DOWNLOAD_DIR }}/${{ env.ZIP_NAME }}
           如果未找到文件: 错误
-保留天数: 1
+: 1
