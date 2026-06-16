@@ -104,26 +104,26 @@ jobs:
       - uses: actions/checkout@v4
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
-        使用:
+        与:
           python-version: "3.11"
 
-      - 名称: Install Dependency
-        运行: |
+      - name: Install Dependency
+        run: |
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
 
-      - 名称: 安装 img2pdf
+      - name: 安装img2pdf
         如果: inputs.PDF_OPTION != '否'
         运行: |
           pip install img2pdf
 
-      - 名称: 安装 jmcomic（pip）
+      - name: 安装jmcomic（pip）
         如果: ${{ github.ref != 'refs/heads/dev' }}
         运行: |
           pip install jmcomic -i https://pypi.org/project --upgrade
 
-      - 名称: 安装jmcomic（本地）
-        if: ${{ github.ref == 'refs/heads/dev' }}
+      - name: 安装jmcomic（local）
+: { github.ref == 'refs/heads/dev' }}
         运行: |
           pip install -e ./
 
@@ -139,9 +139,9 @@ jobs:
           mv "../$ZIP_NAME" .
 
       - 名称: 上传结果
-        uses: actions/upload-artifact@v4
-        使用:
-          name: ${{ env.UPLOAD_NAME }}
+        使用: actions/upload-artifact@v4
+        与:
+          名称: ${{ env.UPLOAD_NAME }}
           路径: ${{ env.JM_DOWNLOAD_DIR }}/${{ env.ZIP_NAME }}
           如果未找到文件: 错误
-          retention-days: 1
+保留天数: 1
